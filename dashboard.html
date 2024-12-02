@@ -470,25 +470,25 @@
 
 
           // Customize the geocoder to search camera markers based on properties
-    const customGeocoder = L.Control.geocoder({
-        geocoder: {
-            geocode: function(query, callback) {
-                const results = [];
-                allfixcamsLayerGroup.features.forEach(function (feature) {
-                    const name = feature.properties.id.toLowerCase();
-                    if (name.includes(query.toLowerCase())) {
-                        results.push({
-                            bbox: feature.geometry.bbox,
-                            center: L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]),
-                            properties: feature.properties,
-                            name: feature.properties.id
-                        });
-                    }
-                });
-                callback(results);
-            }
-        }
-    }).addTo(map);
+    // const customGeocoder = L.Control.geocoder({
+    //     geocoder: {
+    //         geocode: function(query, callback) {
+    //             const results = [];
+    //             allfixcamsLayerGroup.features.forEach(function (feature) {
+    //                 const name = feature.properties.id.toLowerCase();
+    //                 if (name.includes(query.toLowerCase())) {
+    //                     results.push({
+    //                         bbox: feature.geometry.bbox,
+    //                         center: L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]),
+    //                         properties: feature.properties,
+    //                         name: feature.properties.id
+    //                     });
+    //                 }
+    //             });
+    //             callback(results);
+    //         }
+    //     }
+    // }).addTo(map);
         
 
 
