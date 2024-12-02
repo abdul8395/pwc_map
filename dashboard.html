@@ -68,7 +68,7 @@
     }
     .custom-buttons {
         position: absolute;
-        bottom: 10px;
+        top: 10px;
         left: 10px;
         z-index: 1000;
     }
@@ -106,13 +106,16 @@
 
   <div id="map">
     <div class="map-title"><img src="data/1stech_logo.png" height="20" width="70" alt=""> ©2024 Interactive Surveillance Map</div>
-    <!-- <div class="custom-buttons">
+    <div class="custom-buttons">
         <div class="btn-group" role="group" aria-label="Map Controls">
-            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#vehicle_modal">Add Vehicle</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#add_fixcam_modal">Add Camera</button>
-            <button type="button" class="btn btn-primary" id="exportall_DBmarkersButton">Export Markers</button>
+            <button type="button" class="btn btn-warning btn-sm" onclick="redirectToIndex()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+              <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+            </svg>  Log Out</button>
+            <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#add_fixcam_modal">Add Camera</button>
+            <button type="button" class="btn btn-primary" id="exportall_DBmarkersButton">Export Markers</button> -->
         </div>
-    </div> -->
+    </div>
 
      <!-- Vehicle Modal -->
     <div class="modal" id="vehicle_modal">
@@ -279,6 +282,12 @@
 
   <script>
  
+ function redirectToIndex() {
+        window.location.href = "index.html"; // Change the path as necessary
+    }
+
+
+
     var map
     var authenticatedUser = false;
     var animatedMarkers = [];
@@ -314,8 +323,11 @@
     // center: [30.001172220530954, 65.5312478542328],
     center: [24.85442917459412, 46.72408103942871],
     zoom: 14,
+    zoomControl: false, // Disable default zoom control
     attributionControl: false
   });
+
+
 
 // Boundary Color
 
@@ -465,7 +477,9 @@
       // Add the cameraLayerGroup to the map
       allfixcamsLayerGroup.addTo(map);
 
-
+      L.control.zoom({
+        position: 'topright' // Change position to bottom right
+    }).addTo(map);
 
           // Customize the geocoder to search camera markers based on properties
     // const customGeocoder = L.Control.geocoder({
